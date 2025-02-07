@@ -11,4 +11,3 @@ __pycache__/
 # Ignore environment variables or secrets
 .env
 config.env
-config.env

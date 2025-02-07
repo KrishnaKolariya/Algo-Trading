@@ -1,20 +1,31 @@
-# Algo Trading with SmartAPI
+# Algo-Trading
 
-## Overview
-The script fetches historical market data, processes it, and stores it in structured CSV files for backtesting.
+Algo-Trading is a Python-based project that uses Backtrader to backtest trading strategies. This repository includes scripts for:
 
-## Features
-- **Automated Login**: Uses API Key, MPIN, and TOTP for authentication.
-- **Historical Data Extraction**: Fetches OHLCV (Open, High, Low, Close, Volume) data.
-- **Data Structuring**: Splits datetime into separate Date, Time, and Timezone columns.
-- **Custom File Naming**: Saves data in `h_data/` directory with filenames formatted as `Symbol_Interval_FromDate_ToDate.csv`.
-- **Environment Variables Support**: Credentials are securely stored in a `.env` file.
+1. **Historical Data Extraction:**  
+   A script (`scripts/main.py`) fetches historical market data from an API, processes it using Pandas, and saves it as CSV files in the `h_data` directory.
 
-## Installation & Setup
+2. **Backtesting:**  
+   A backtesting script (`scripts/backtest.py`) implements an SMA crossover strategy integrated with target profit (0.3%) and stop-loss (0.1%) conditions. The strategy enters positions based on SMA crossover signals and exits when either the target or the stop-loss condition is met. It logs trade events and prints a detailed trade summary.
+
+3. **Configuration Management:**  
+   Sensitive credentials (API key, username, MPIN, TOTP secret) are stored in a `config.env` file, which is loaded by `scripts/config.py`. The `config.env` file is excluded from GitHub via the `.gitignore` file.
+
+4. **Data Handling & Visualization:**  
+   Historical data is processed using Pandas and visualized with Backtrader’s built-in plotting functionality (non-blocking).
+
+5. **Trade Summary:**  
+   The backtesting script outputs a trade summary (including total closed trades, long trades, short trades, winning trades, losing trades, and winning probability) in a tabular format.
+
+---
+
+## Setup and Installation
+
 ### 1. Clone the Repository
-```sh
-git clone https://github.com/yourusername/algo-trading.git
-cd algo-trading
+
+```bash
+git clone https://github.com/KrishnaKolariya/Algo-Trading.git
+cd Algo-Trading
 ```
 
 ### 2. Create a Virtual Environment (Recommended)
@@ -44,23 +55,29 @@ TOTP_SECRET="your_totp_secret"
 cd scripts
 python main.py
 ```
+```sh
+cd scripts
+python backtest.py
+```
 
 ## File Structure
 ```
-|-- algo-trading/
-    |-- h_data/                   # Stores historical data CSV files
-    |-- scripts/
-        |-- main.py                # Main script to fetch and save data
-        |-- config.py               # Loads API credentials from .env
-    |-- config.env                  # DO NOT UPLOAD (Store credentials securely)
-    |-- requirements.txt            # List of required Python packages
-    |-- README.md                   # Project documentation
+Algo-Trading/
+├── config.env            # Contains sensitive credentials (DO NOT UPLOAD)
+├── .gitignore            # Excludes config.env, virtual environments, etc.
+├── requirements.txt      # List of required Python packages
+├── README.md             # This documentation file
+└── scripts/
+    ├── main.py           # Script to fetch and save historical data
+    ├── backtest.py       # Backtesting script using Backtrader
+    └── config.py         # Loads environment variables from config.env
+
 ```
 
 ## Output Example
 The script saves historical data in CSV format under `h_data/` as:
 ```
-h_data/NIFTY_ONE_MINUTE_2025-01-08_2025-01-31.csv
+h_data/NIFTY_ONE_MINUTE_2025-01-01_2025-01-31.csv
 ```
 Sample CSV format:
 ```

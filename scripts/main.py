@@ -41,7 +41,7 @@ symbol = "NIFTY"  # Example: Change this as needed
 symbol_token = "99926000"  # Replace with the correct token for your asset
 exchange = "NSE"
 interval = "ONE_MINUTE"
-from_date = "2025-01-08"
+from_date = "2025-01-01"
 to_date = "2025-01-31"
 
 historicParam = {
@@ -84,6 +84,12 @@ os.makedirs(output_dir, exist_ok=True)  # Ensure directory exists
 
 # Format file name as "Symbol_Interval_FromDate_ToDate.csv"
 output_file = os.path.join(output_dir, f"{symbol}_{interval}_{from_date}_{to_date}.csv")
+
+# Calculate the return as the percentage change from Open to Close.
+# First, compute the return value as a float with two decimals.
+return_values = ((df['Close'] - df['Open']) / df['Open'] * 100).round(2)
+# Then, format these values as strings with a "%" sign appended.
+df['Return'] = return_values.apply(lambda x: f"{x:.2f} %")
 
 # Save the formatted DataFrame to a CSV file without the index column
 df.to_csv(output_file, index=False)

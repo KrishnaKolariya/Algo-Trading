@@ -2,7 +2,10 @@ asttokens==3.0.0
 attrs==23.1.0
 autobahn==23.6.2
 Automat==22.10.0
+backtrader==1.9.78.123
 beautifulsoup4==4.13.3
+bs4==0.0.2
+bselib==0.0.5
 certifi==2023.5.7
 cffi==1.15.1
 charset-normalizer==3.1.0
@@ -33,6 +36,7 @@ matplotlib==3.10.0
 matplotlib-inline==0.1.7
 multitasking==0.0.11
 nest-asyncio==1.6.0
+nselib==1.5
 numpy==2.2.2
 packaging==24.2
 pandas==2.2.3
@@ -56,6 +60,7 @@ pyzmq==26.2.1
 rdflib==6.3.2
 rdflib-jsonld==0.6.2
 requests==2.31.0
+scipy==1.15.1
 seaborn==0.13.2
 setuptools==75.8.0
 simplejson==3.19.1
